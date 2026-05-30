@@ -1,11 +1,7 @@
-# Spotify Song Popularity Analysis
+# Spotify Music Popularity Analysis
 
-## UCSD DSC 80 Final Project
+DSC 80 Final Project
 
-This project explores Spotify music track data and investigates factors that may influence song popularity.
+Author: Timmy Wijaya
 
-### Research Question
-Do explicit songs tend to have higher popularity than non-explicit songs?
-
-### Prediction Problem
-Predict a song's popularity score using audio features and song metadata.
+This project explores factors that influence Spotify song popularity and investigates whether explicit songs tend to be more popular than non-explicit songs.
