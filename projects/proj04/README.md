@@ -1,1 +1,26 @@
-The writeup for this project is not contained in the notebook or anywhere in this repository, but rather in the course website. See, for example: https://dsc-courses.github.io/dsc80-2024-fa/proj04/
+# Spotify Song Popularity Analysis
+### Tim Wijaya
+
+# Introduction
+...
+
+# Data Cleaning and Exploratory Data Analysis
+...
+
+# Assessment of Missingness
+...
+
+# Hypothesis Testing
+...
+
+# Framing a Prediction Problem
+...
+
+# Baseline Model
+...
+
+# Final Model
+...
+
+# Fairness Analysis
+...
