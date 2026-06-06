@@ -38,7 +38,7 @@ I also identified missing values in the dataset. Most columns contained few or n
 The histogram below shows the distribution of song popularity across all songs in the dataset.
 
 <iframe
-    src="assets/popularity_hist.html"
+    src="projects/proj04/assets/popularity_hist.html"
     width="800"
     height="600"
     frameborder="0">
@@ -51,7 +51,7 @@ Most songs have low to medium popularity scores, while highly popular songs are 
 The box plot below compares popularity between explicit and non-explicit songs.
 
 <iframe
-    src="assets/explicit_popularity.html"
+    src="projects/proj04/assets/explicit_popularity.html"
     width="800"
     height="600"
     frameborder="0">
@@ -64,7 +64,7 @@ Explicit songs appear to have a slightly higher median popularity than non-expli
 To explore how popularity varies across genres, I grouped songs by `track_genre` and computed the average popularity score for each genre. The plot below shows the ten genres with the highest average popularity.
 
 <iframe
-    src="assets/genre_popularity.html"
+    src="projects/proj04/assets/genre_popularity.html"
     width="800"
     height="600"
     frameborder="0">
