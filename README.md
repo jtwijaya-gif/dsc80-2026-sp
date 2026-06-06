@@ -105,7 +105,7 @@ The histogram below compares the distribution of energy for songs with missing t
 
 Songs with missing tempo values tend to have lower energy levels on average (0.51) than songs without missing tempo values (0.67).
 
-A permutation test comparing energy and tempo missingness produced a p-value of approximately 0.00. This provides strong evidence that the missingness of tempo depends on energy.
+A permutation test comparing energy and tempo missingness produced a p-value less than 0.01. This provides strong evidence that the missingness of tempo depends on energy.
 
 As a comparison, a permutation test using popularity produced a p-value of approximately 0.70. Since this p-value is large, there is insufficient evidence that tempo missingness depends on popularity.
 
@@ -147,7 +147,7 @@ The box plot below compares the popularity distributions of explicit and non-exp
 
 ### Results
 
-The observed difference in mean popularity was approximately **3.52 popularity points**, with explicit songs having the higher average popularity.
+The observed difference in mean popularity was approximately **3.52 points**, with explicit songs having the higher average popularity.
 
 A one-sided permutation test with 500 simulations produced a **p-value less than 0.01**.
 
@@ -155,7 +155,7 @@ Because the p-value is less than the significance level of 0.05, there is suffic
 
 ### Conclusion
 
-The results provide evidence that explicit songs tend to have higher average popularity than non-explicit songs in this dataset. However, this does not prove that explicit content causes higher popularity. It only suggests an association between explicit content and song popularity.
+ The results suggest that explicit songs tend to have higher average popularity than non-explicit songs in this dataset. However, this does not prove that explicit content causes higher popularity. It only suggests an association between explicit content and song popularity.
 
 ## Prediction Problem
 
@@ -195,3 +195,81 @@ The target variable `popularity` would not be available at prediction time and i
 I will use **Root Mean Squared Error (RMSE)** to evaluate model performance.
 
 RMSE is appropriate because popularity is a continuous numerical variable and RMSE measures prediction error in the same units as the response variable. RMSE also penalizes larger prediction errors more heavily than smaller ones, making it useful for evaluating how accurately the model predicts song popularity.
+
+## Baseline Model
+
+The baseline model predicts song popularity using `danceability`, `energy`, and `track_genre`.
+
+The model uses 3 features total: 2 quantitative features (`danceability` and `energy`), 0 ordinal features, and 1 nominal feature (`track_genre`). The nominal feature was one-hot encoded using a `ColumnTransformer` before fitting a Linear Regression model. All preprocessing and model training steps were implemented within a single 'sklearn' Pipeline.
+
+### Model Performance
+
+Model performance was evaluated using RMSE on a held-out test set.
+
+The baseline model achieved an RMSE of approximately **19.20**.
+
+### Evaluation
+
+An RMSE of 19.20 indicates that the model's predictions typically differ from the true popularity scores by about 19 popularity points. I do not consider this model particularly strong, since the prediction error is still fairly large. However, it provides a reasonable baseline for comparison. In the final model, I will attempt to improve performance by incorporating additional features and more advanced feature engineering.
+
+## Final Model
+
+To improve upon the baseline model, I added more audio features and two engineered features.
+
+The first engineered feature is `energy_danceability`, which combines `energy` and `danceability`. This may be useful because songs that are both energetic and danceable may have different popularity patterns than songs that are only high in one of those features.
+
+The second engineered feature is `song_age`, which measures how old a song is compared to the newest song in the dataset. This may be useful because newer songs may receive more attention on Spotify.
+
+The final model used the following features: `danceability`, `energy`, `valence`, `speechiness`, `acousticness`, `explicit`, `release_year`, `track_genre`, and the engineered features `energy_danceability` and `song_age`.
+
+For the final model, I used a Decision Tree Regressor. The nominal feature `track_genre` was one-hot encoded, while the remaining features were passed through as numerical or boolean features.
+
+I tuned the `max_depth` hyperparameter using GridSearchCV because `max_depth` controls the complexity of the tree. A tree that is too shallow may underfit, while a tree that is too deep may overfit.
+
+The best value selected by GridSearchCV was `max_depth = 15`.
+
+The final model achieved an RMSE of approximately **18.64**, compared to the baseline model RMSE of **19.20**.
+
+To allow a fair comparison with the baseline model, I used the same train-test split when evaluating the final model.
+
+Although the improvement is modest, the final model performed better than the baseline model. This suggests that the added audio features and engineered features may provide useful information for predicting song popularity.
+
+## Fairness Analysis
+
+To evaluate whether the final model performs differently across groups, I compared the model's prediction performance for explicit and non-explicit songs.
+
+### Groups
+
+- **Group X:** Explicit songs (`explicit = True`)
+- **Group Y:** Non-explicit songs (`explicit = False`)
+
+### Evaluation Metric
+
+Since this is a regression problem, I used RMSE to measure model performance for each group.
+
+### Hypotheses
+
+- **Null Hypothesis (H₀):** The model performs equally well for explicit and non-explicit songs. Any observed difference in RMSE is due to random chance.
+- **Alternative Hypothesis (H₁):** The model may perform worse for explicit songs than for non-explicit songs, resulting in a higher RMSE.
+
+### Test Statistic
+
+I used the difference in RMSE between the two groups:
+
+**RMSE(explicit songs) − RMSE(non-explicit songs)**
+
+### Significance Level
+
+α = 0.05
+
+### Results
+
+The observed difference in RMSE between explicit and non-explicit songs was approximately **2.33**.
+
+Using a permutation test with 500 simulations, the resulting p-value was **less than 0.01**.
+
+Since the p-value is less than the significance level of 0.05, there is sufficient evidence to reject the null hypothesis.
+
+### Conclusion
+
+The results suggest that the model has higher prediction error for explicit songs than for non-explicit songs. Specifically, the RMSE is higher for explicit songs, indicating that the model makes larger prediction errors for explicit songs than for non-explicit songs.
