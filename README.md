@@ -39,8 +39,8 @@ The histogram below shows the distribution of song popularity across all songs i
 
 <iframe
     src="projects/proj04/assets/popularity_hist.html"
-    width="800"
-    height="600"
+    width="900"
+    height="450"
     frameborder="0">
 </iframe>
 
@@ -52,8 +52,8 @@ The box plot below compares popularity between explicit and non-explicit songs.
 
 <iframe
     src="projects/proj04/assets/explicit_popularity.html"
-    width="800"
-    height="600"
+    width="900"
+    height="450"
     frameborder="0">
 </iframe>
 
@@ -65,8 +65,8 @@ To explore how popularity varies across genres, I grouped songs by `track_genre`
 
 <iframe
     src="projects/proj04/assets/genre_popularity.html"
-    width="800"
-    height="600"
+    width="900"
+    height="450"
     frameborder="0">
 </iframe>
 
