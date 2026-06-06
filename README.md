@@ -1,7 +1,26 @@
-# Spotify Music Popularity Analysis
+# Spotify Song Popularity Analysis
+### Tim Wijaya
 
-DSC 80 Final Project
+# Introduction
+...
 
-Author: Joseph Timmy Indra Wijaya
+# Data Cleaning and Exploratory Data Analysis
+...
 
-This project explores factors that influence Spotify song popularity and investigates whether explicit songs tend to be more popular than non-explicit songs.
+# Assessment of Missingness
+...
+
+# Hypothesis Testing
+...
+
+# Framing a Prediction Problem
+...
+
+# Baseline Model
+...
+
+# Final Model
+...
+
+# Fairness Analysis
+...
