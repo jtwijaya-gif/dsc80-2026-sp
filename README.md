@@ -83,3 +83,30 @@ To explore how popularity varies across genres, I grouped songs by `track_genre`
 </iframe>
 
 The results show that popularity differs substantially across genres. Genres such as pop-film and k-pop have some of the highest average popularity scores in the dataset, suggesting that genre may be an important factor when explaining and predicting song popularity.
+
+## Assessment of Missingness
+
+### NMAR Analysis
+
+It is possible that the `tempo` column is NMAR because the reason a tempo value is missing may depend on characteristics of the audio itself that are not fully captured by the observed variables in the dataset. For example, songs with unusual rhythms, ambiguous timing, or recording artifacts may be more difficult for Spotify's tempo estimation process to assign a tempo value. If additional information about how Spotify calculates tempo were available, the missingness might instead be explained by observed variables, making the missingness MAR rather than NMAR.
+
+### Missingness Dependency
+
+The `tempo` column contains 22,114 missing values, making it a suitable candidate for missingness analysis.
+
+The histogram below compares the distribution of energy for songs with missing tempo values and songs without missing tempo values.
+
+<iframe
+    src="projects/proj04/assets/energy_missingness.html"
+    width="900"
+    height="450"
+    frameborder="0">
+</iframe>
+
+Songs with missing tempo values tend to have lower energy levels on average (0.51) than songs without missing tempo values (0.67).
+
+A permutation test comparing energy and tempo missingness produced a p-value close to 0. This provides strong evidence that the missingness of tempo depends on energy.
+
+As a comparison, a permutation test using popularity produced a p-value of approximately 0.70. Since this p-value is large, there is insufficient evidence that tempo missingness depends on popularity.
+
+Therefore, the missingness of the `tempo` column appears to depend on `energy` but not on `popularity`. This satisfies the project requirement of identifying one variable on which the missingness depends and one variable on which it does not depend.
