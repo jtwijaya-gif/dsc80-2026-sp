@@ -105,8 +105,54 @@ The histogram below compares the distribution of energy for songs with missing t
 
 Songs with missing tempo values tend to have lower energy levels on average (0.51) than songs without missing tempo values (0.67).
 
-A permutation test comparing energy and tempo missingness produced a p-value close to 0. This provides strong evidence that the missingness of tempo depends on energy.
+A permutation test comparing energy and tempo missingness produced a p-value of approximately 0.00. This provides strong evidence that the missingness of tempo depends on energy.
 
 As a comparison, a permutation test using popularity produced a p-value of approximately 0.70. Since this p-value is large, there is insufficient evidence that tempo missingness depends on popularity.
 
 Therefore, the missingness of the `tempo` column appears to depend on `energy` but not on `popularity`. This satisfies the project requirement of identifying one variable on which the missingness depends and one variable on which it does not depend.
+
+## Hypothesis Testing
+
+### Research Question
+
+Do explicit songs tend to have higher popularity than non-explicit songs on Spotify?
+
+### Hypotheses
+
+- **Null Hypothesis (H₀):** Explicit and non-explicit songs have the same popularity distribution. Any observed difference in average popularity is due to random chance.
+- **Alternative Hypothesis (H₁):** Explicit songs have a higher average popularity than non-explicit songs.
+
+### Test Statistic
+
+I used the difference in mean popularity:
+
+**(Mean popularity of explicit songs) − (Mean popularity of non-explicit songs)**
+
+This statistic is appropriate because popularity is a quantitative variable and the goal is to compare the average popularity between two groups.
+
+### Significance Level
+
+α = 0.05
+
+### Visualization
+
+The box plot below compares the popularity distributions of explicit and non-explicit songs.
+
+<iframe
+    src="projects/proj04/assets/explicit_popularity.html"
+    width="900"
+    height="450"
+    frameborder="0">
+</iframe>
+
+### Results
+
+The observed difference in mean popularity was approximately **3.52 popularity points**, with explicit songs having the higher average popularity.
+
+A one-sided permutation test with 500 simulations produced a **p-value less than 0.01**.
+
+Because the p-value is less than the significance level of 0.05, there is sufficient evidence to reject the null hypothesis.
+
+### Conclusion
+
+The results provide evidence that explicit songs tend to have higher average popularity than non-explicit songs in this dataset. However, this does not prove that explicit content causes higher popularity. It only suggests an association between explicit content and song popularity.
