@@ -156,3 +156,42 @@ Because the p-value is less than the significance level of 0.05, there is suffic
 ### Conclusion
 
 The results provide evidence that explicit songs tend to have higher average popularity than non-explicit songs in this dataset. However, this does not prove that explicit content causes higher popularity. It only suggests an association between explicit content and song popularity.
+
+## Prediction Problem
+
+The prediction problem for this project is to predict a song's Spotify popularity score using information about the song and its audio characteristics.
+
+This is a **regression problem** because the response variable, `popularity`, is quantitative and can take on many numerical values between 0 and 100.
+
+### Response Variable
+
+The response variable is:
+
+- **popularity**: Spotify's popularity score assigned to a song.
+
+I chose popularity as the response variable because it is one of the most important measures of a song's success on Spotify. Predicting popularity can help identify which song characteristics are associated with higher listener engagement and overall success on the platform.
+
+### Features Available at Time of Prediction
+
+At the time of prediction, information about a song's audio features and metadata would already be available. Therefore, features such as:
+
+- `danceability`
+- `energy`
+- `acousticness`
+- `speechiness`
+- `loudness`
+- `tempo`
+- `duration_ms`
+- `valence`
+- `explicit`
+- `track_genre`
+
+can be used as predictors.
+
+The target variable `popularity` would not be available at prediction time and is therefore excluded from the predictors.
+
+### Evaluation Metric
+
+I will use **Root Mean Squared Error (RMSE)** to evaluate model performance.
+
+RMSE is appropriate because popularity is a continuous numerical variable and RMSE measures prediction error in the same units as the response variable. RMSE also penalizes larger prediction errors more heavily than smaller ones, making it useful for evaluating how accurately the model predicts song popularity.
