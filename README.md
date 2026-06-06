@@ -33,6 +33,18 @@ Several preprocessing steps were performed before analysis. An unnecessary index
 
 I also identified missing values in the dataset. Most columns contained few or no missing values, although the `tempo` column contained **22,114 missing observations**. Since tempo was not directly related to the primary research question, these values were left as missing during exploratory analysis.
 
+### Cleaned Dataset Preview
+
+The first five rows of the cleaned dataset are shown below.
+
+| track_name | artists | popularity | explicit | track_genre | release_year |
+|------------|----------|------------|----------|-------------|--------------|
+| Comedy | Gen Hoshino | 73 | False | acoustic | 1974.0 |
+| Ghost - Acoustic | Ben Woodward | 55 | False | acoustic | NaN |
+| To Begin Again | Ingrid Michaelson;ZAYN | 57 | False | acoustic | 1973.0 |
+| Can't Help Falling In Love | Kina Grannis | 71 | False | acoustic | NaN |
+| Hold On | Chord Overstreet | 82 | False | acoustic | NaN |
+
 ### Univariate Analysis
 
 The histogram below shows the distribution of song popularity across all songs in the dataset.
